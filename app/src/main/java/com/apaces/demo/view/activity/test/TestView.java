@@ -1,4 +1,4 @@
-package com.apaces.demo.view.activity.mian;
+package com.apaces.demo.view.activity.test;
 
 import com.apaces.demo.base.BaseView;
 
@@ -8,7 +8,7 @@ import com.apaces.demo.base.BaseView;
  * 描述：
  */
 
-public interface MainView extends BaseView {
+public interface TestView extends BaseView {
 
     //View效果就是展示下载进度框
     void showUpdateDialog();

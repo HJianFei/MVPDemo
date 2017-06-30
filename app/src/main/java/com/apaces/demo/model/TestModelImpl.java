@@ -21,7 +21,7 @@ import io.reactivex.schedulers.Schedulers;
  * 描述：
  */
 
-public class MainModelImpl implements MainModel {
+public class TestModelImpl implements TestModel {
 
     @Override
     public void getData(final onFinishListener listener) {

@@ -1,59 +1,183 @@
 package com.apaces.demo.view.activity.mian;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.apaces.demo.R;
-import com.apaces.demo.base.BaseActivity;
-import com.apaces.demo.presenter.MainPresenterImpl;
+import com.apaces.demo.utils.ToastUtil;
+import com.apaces.demo.view.fragment.business.BusinessFragment;
+import com.apaces.demo.view.fragment.car.CarFragment;
+import com.apaces.demo.view.fragment.dialogue.DialogueFragment;
+import com.apaces.demo.view.fragment.me.MeFragment;
+import com.apaces.demo.view.fragment.nearby.NearByFragment;
+import com.apaces.demo.widget.CustomPopWindow;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity<MainPresenterImpl> implements MainView {
+public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.hello)
-    TextView hello;
+
+    @BindView(R.id.btn_global_search)
+    ImageView btnGlobalSearch;
+    @BindView(R.id.btn_global_menu)
+    ImageView btnGlobalMenu;
+    @BindView(R.id.home_chart)
+    TextView homeChart;
+    @BindView(R.id.home_nearby)
+    TextView homeNearby;
+    @BindView(R.id.home_car)
+    TextView homeCar;
+    @BindView(R.id.home_business)
+    TextView homeBusiness;
+    @BindView(R.id.home_me)
+    TextView homeMe;
+    private DialogueFragment dialogueFragment;
+    private NearByFragment nearByFragment;
+    private CarFragment carFragment;
+    private BusinessFragment businessFragment;
+    private MeFragment meFragment;
+    private int curIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
-        mPresenter.getData();
-    }
-
-    @Override
-    protected void createPresenter() {
-
-        mPresenter = new MainPresenterImpl();
-    }
-
-    @Override
-    public void showDialog(String msg) {
-        super.showDialog(msg);
-        Log.d("onResponse", msg);
-    }
-
-    @Override
-    public void showUpdateDialog() {
+        //默认加载第一个Fragment
+        setDefaultFragment();
 
     }
 
-    @Override
-    public void showProgressDialog() {
+
+    /**
+     * 默认加载第一个Fragment
+     */
+    private void setDefaultFragment() {
+        switchFragment(0);
+        setTabState(homeChart, R.drawable.home_fill, getResources().getColor(R.color.colorPrimary));
+    }
+
+
+    /**
+     * fragment之间切换
+     *
+     * @param i
+     */
+    private void switchFragment(int i) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        switch (i) {
+            case 0:
+                if (dialogueFragment == null) {
+                    dialogueFragment = DialogueFragment.newInstance("", "");
+                }
+                transaction.replace(R.id.container, dialogueFragment);
+                curIndex = 0;
+                break;
+            case 1:
+                if (nearByFragment == null) {
+                    nearByFragment = NearByFragment.newInstance("", "");
+                }
+                transaction.replace(R.id.container, nearByFragment);
+                curIndex = 1;
+                break;
+            case 2:
+                if (carFragment == null) {
+                    carFragment = CarFragment.newInstance("", "");
+                }
+                transaction.replace(R.id.container, carFragment);
+                curIndex = 2;
+                break;
+            case 3:
+                if (businessFragment == null) {
+                    businessFragment = BusinessFragment.newInstance("", "");
+                }
+                transaction.replace(R.id.container, businessFragment);
+                curIndex = 3;
+                break;
+            case 4:
+                if (meFragment == null) {
+                    meFragment = MeFragment.newInstance("", "");
+                }
+                transaction.replace(R.id.container, meFragment);
+                curIndex = 4;
+                break;
+        }
+        transaction.commit();
+    }
+
+
+    /**
+     * 改变底部菜单按钮的状态
+     *
+     * @param textView
+     * @param image
+     * @param color
+     */
+    private void setTabState(TextView textView, int image, int color) {
+        textView.setCompoundDrawablesRelativeWithIntrinsicBounds(0, image, 0, 0);
+        textView.setTextColor(color);
+    }
+
+
+    /**
+     * 重置底部按钮菜单
+     */
+    private void resetTabState() {
+        setTabState(homeChart, R.drawable.home, getResources().getColor(R.color.black_1));
+        setTabState(homeNearby, R.drawable.location, getResources().getColor(R.color.black_1));
+        setTabState(homeCar, R.drawable.like, getResources().getColor(R.color.black_1));
+        setTabState(homeBusiness, R.drawable.like, getResources().getColor(R.color.black_1));
+        setTabState(homeMe, R.drawable.person, getResources().getColor(R.color.black_1));
 
     }
 
-    @Override
-    public void DissProgressDialog() {
 
-    }
-
-    @Override
-    public void ShowToast(String message) {
-
+    //点击事件
+    @OnClick({R.id.btn_global_search, R.id.btn_global_menu, R.id.home_chart, R.id.home_nearby, R.id.home_car, R.id.home_business, R.id.home_me})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.home_chart:
+                resetTabState();
+                setTabState(homeChart, R.drawable.home_fill, getResources().getColor(R.color.colorPrimary));
+                switchFragment(0);
+                break;
+            case R.id.home_nearby:
+                resetTabState();
+                setTabState(homeNearby, R.drawable.location_fill, getResources().getColor(R.color.colorPrimary));
+                switchFragment(1);
+                break;
+            case R.id.home_car:
+                resetTabState();
+                setTabState(homeCar, R.drawable.like_fill, getResources().getColor(R.color.colorPrimary));
+                switchFragment(2);
+                break;
+            case R.id.home_business:
+                resetTabState();
+                setTabState(homeBusiness, R.drawable.like_fill, getResources().getColor(R.color.colorPrimary));
+                switchFragment(3);
+                break;
+            case R.id.home_me:
+                resetTabState();
+                setTabState(homeMe, R.drawable.person_fill, getResources().getColor(R.color.colorPrimary));
+                switchFragment(4);
+                break;
+            case R.id.btn_global_search:
+                ToastUtil.showToast(this, "搜索");
+                break;
+            case R.id.btn_global_menu:
+                if (curIndex == 0) {
+                    CustomPopWindow customPopWindow = new CustomPopWindow(this);
+                    customPopWindow.show(btnGlobalMenu);
+                } else {
+                    ToastUtil.showToast(this, "全局菜单");
+                }
+                break;
+        }
     }
 }

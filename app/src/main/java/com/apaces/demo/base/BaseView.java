@@ -20,4 +20,5 @@ public interface BaseView {
 
     //显示数据为空
     void showEmpty();
+
 }

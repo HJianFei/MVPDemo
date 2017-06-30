@@ -6,7 +6,7 @@ package com.apaces.demo.model;
  * 描述：
  */
 
-public interface MainModel {
+public interface TestModel {
 
     interface onFinishListener {
 
