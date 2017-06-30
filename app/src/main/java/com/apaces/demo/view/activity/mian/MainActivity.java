@@ -21,11 +21,13 @@ public class MainActivity extends BaseActivity<MainPresenterImpl> implements Mai
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
         mPresenter.getData();
     }
 
     @Override
     protected void createPresenter() {
+
         mPresenter = new MainPresenterImpl();
     }
 

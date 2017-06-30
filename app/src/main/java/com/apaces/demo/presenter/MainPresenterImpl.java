@@ -16,6 +16,7 @@ public class MainPresenterImpl implements MainModel.onFinishListener, MainPresen
     private MainView mainView;
 
     public MainPresenterImpl() {
+
         mainModel = new MainModelImpl();
     }
 

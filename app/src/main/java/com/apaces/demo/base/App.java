@@ -9,7 +9,7 @@ import java.util.Set;
 /**
  * Created by HJianFei on 2017/6/29.
  * <p>
- * 描述：
+ * 描述：Application
  */
 
 public class App extends Application {
@@ -20,11 +20,11 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
         instance = this;
 
     }
 
+    //同步
     public static synchronized App getInstance() {
         return instance;
     }
