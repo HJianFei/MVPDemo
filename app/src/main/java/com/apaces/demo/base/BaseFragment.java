@@ -1,6 +1,8 @@
 package com.apaces.demo.base;
 
 import android.app.Activity;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
 /**
@@ -12,14 +14,36 @@ import android.support.v4.app.Fragment;
 
 public abstract class BaseFragment<T extends BasePresenter> extends Fragment implements BaseView {
 
-    protected BaseActivity mActivity;
+    protected Activity mActivity;
+    protected T mPresenter;
 
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        this.mActivity = (BaseActivity) activity;
+        this.mActivity = activity;
     }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        createPresenter();
+        if (mPresenter != null) {
+
+            mPresenter.attachView(this);
+        }
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mPresenter != null)
+            mPresenter.detachView();
+    }
+
+    protected abstract void createPresenter();
 
     @Override
     public void showDialog(String msg) {

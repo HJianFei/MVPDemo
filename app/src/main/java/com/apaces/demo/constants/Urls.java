@@ -25,4 +25,7 @@ public class Urls {
 
     //用户登录
     public static final String LOGIN_USER = "";
+
+    //好友列表
+    public static final String USER_FRIENDS = "";
 }

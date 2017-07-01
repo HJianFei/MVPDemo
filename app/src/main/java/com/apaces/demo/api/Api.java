@@ -2,6 +2,7 @@ package com.apaces.demo.api;
 
 import com.apaces.demo.base.BaseResponse;
 import com.apaces.demo.constants.Urls;
+import com.apaces.demo.entity.Friend;
 import com.apaces.demo.entity.LoginResult;
 import com.apaces.demo.entity.ResultCode;
 
@@ -24,5 +25,9 @@ public interface Api {
 
     //用户登录
     @POST(Urls.LOGIN_USER)
-    Observable<BaseResponse<LoginResult>> loginUser(@FieldMap Map<String, Object> map);
+    Observable<BaseResponse<LoginResult>> loginser(@FieldMap Map<String, Object> map);
+
+    //获取好友列表
+    @POST(Urls.USER_FRIENDS)
+    Observable<BaseResponse<Friend>> getUserFriends(@FieldMap Map<String, Object> map);
 }

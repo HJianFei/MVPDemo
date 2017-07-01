@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.apaces.demo.R;
+import com.apaces.demo.view.fragment.dialogue.content.ContentFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
