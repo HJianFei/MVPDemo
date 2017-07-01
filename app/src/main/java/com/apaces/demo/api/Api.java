@@ -5,6 +5,7 @@ import com.apaces.demo.constants.Urls;
 import com.apaces.demo.entity.Friend;
 import com.apaces.demo.entity.LoginResult;
 import com.apaces.demo.entity.ResultCode;
+import com.apaces.demo.entity.User;
 
 import java.util.Map;
 
@@ -30,4 +31,12 @@ public interface Api {
     //获取好友列表
     @POST(Urls.USER_FRIENDS)
     Observable<BaseResponse<Friend>> getUserFriends(@FieldMap Map<String, Object> map);
+
+    //用户详情
+    @POST(Urls.USER_DETAIL)
+    Observable<BaseResponse<User>> getUserDetail(@FieldMap Map<String, Object> map);
+
+    //删除好友
+    @POST(Urls.DEL_FRIEND)
+    Observable<ResultCode> delFriend(@FieldMap Map<String, Object> map);
 }

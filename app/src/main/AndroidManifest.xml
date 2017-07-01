@@ -28,7 +28,8 @@
         <activity android:name=".view.activity.test.TestActivity" />
         <activity android:name=".view.activity.user_search.UserSearchActivity" />
         <activity android:name=".view.activity.main.MainActivity" />
-        <activity android:name=".view.activity.register.RegisterActivity"></activity>
+        <activity android:name=".view.activity.register.RegisterActivity" />
+        <activity android:name=".view.activity.user_detail.UserDetailActivity"></activity>
     </application>
 
 </manifest>

@@ -28,4 +28,10 @@ public class Urls {
 
     //好友列表
     public static final String USER_FRIENDS = "";
+
+    //用户详情
+    public static final String USER_DETAIL = "";
+
+    //删除好友
+    public static final String DEL_FRIEND = "";
 }

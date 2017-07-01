@@ -1,6 +1,7 @@
 package com.apaces.demo.view.fragment.dialogue.content;
 
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +20,7 @@ import com.apaces.demo.entity.Friend;
 import com.apaces.demo.presenter.dialogue.content.ContentPresenterImpl;
 import com.apaces.demo.utils.ImgConfig;
 import com.apaces.demo.utils.LogUtils;
+import com.apaces.demo.view.activity.user_detail.UserDetailActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -92,9 +94,9 @@ public class ContentFragment extends BaseFragment<ContentPresenterImpl> implemen
                 holder.setOnClickListener(R.id.user_avatar, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-//                        Intent intent = new Intent(mActivity, FriendActivity.class);
-//                        intent.putExtra("user_name", friend.username);
-//                        startActivity(intent);
+                        Intent intent = new Intent(mActivity, UserDetailActivity.class);
+                        intent.putExtra("username", friend.username);
+                        startActivity(intent);
 
                     }
                 });
