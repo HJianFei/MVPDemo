@@ -1,4 +1,4 @@
-package com.apaces.demo.model;
+package com.apaces.demo.model.test;
 
 /**
  * Created by HJianFei on 2017/6/29.

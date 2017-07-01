@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import com.apaces.demo.R;
 import com.apaces.demo.base.BaseActivity;
-import com.apaces.demo.presenter.TestPresenterImpl;
+import com.apaces.demo.presenter.test.TestPresenterImpl;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

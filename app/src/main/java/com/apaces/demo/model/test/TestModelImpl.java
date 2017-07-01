@@ -1,4 +1,4 @@
-package com.apaces.demo.model;
+package com.apaces.demo.model.test;
 
 import android.util.Log;
 

@@ -1,4 +1,4 @@
-package com.apaces.demo.view.activity.mian;
+package com.apaces.demo.view.activity.main;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;

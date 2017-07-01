@@ -1,4 +1,4 @@
-package com.apaces.demo.presenter;
+package com.apaces.demo.presenter.test;
 
 import com.apaces.demo.base.BasePresenter;
 import com.apaces.demo.view.activity.test.TestView;

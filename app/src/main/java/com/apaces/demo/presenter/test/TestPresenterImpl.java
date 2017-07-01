@@ -1,7 +1,7 @@
-package com.apaces.demo.presenter;
+package com.apaces.demo.presenter.test;
 
-import com.apaces.demo.model.TestModel;
-import com.apaces.demo.model.TestModelImpl;
+import com.apaces.demo.model.test.TestModel;
+import com.apaces.demo.model.test.TestModelImpl;
 import com.apaces.demo.view.activity.test.TestView;
 
 /**

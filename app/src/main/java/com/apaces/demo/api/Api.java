@@ -2,6 +2,7 @@ package com.apaces.demo.api;
 
 import com.apaces.demo.base.BaseResponse;
 import com.apaces.demo.constants.Urls;
+import com.apaces.demo.entity.LoginResult;
 import com.apaces.demo.entity.ResultCode;
 
 import java.util.Map;
@@ -20,4 +21,8 @@ public interface Api {
     //用户注册
     @POST(Urls.REG_USER)
     Observable<BaseResponse<ResultCode>> regUser(@FieldMap Map<String, Object> map);
+
+    //用户登录
+    @POST(Urls.LOGIN_USER)
+    Observable<BaseResponse<LoginResult>> loginUser(@FieldMap Map<String, Object> map);
 }
