@@ -44,10 +44,10 @@ dependencies {
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support:support-vector-drawable:25.3.1'
     compile 'org.greenrobot:eventbus:3.0.0'
-    testCompile 'junit:junit:4.12'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
     compile 'org.igniterealtime.smack:smack-android:4.1.8'
     compile 'org.igniterealtime.smack:smack-tcp:4.1.8'
     compile 'org.igniterealtime.smack:smack-im:4.1.8'
     compile 'org.igniterealtime.smack:smack-extensions:4.1.8'
+    testCompile 'junit:junit:4.12'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
 }

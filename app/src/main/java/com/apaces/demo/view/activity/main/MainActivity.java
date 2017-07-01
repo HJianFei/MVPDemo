@@ -3,11 +3,14 @@ package com.apaces.demo.view.activity.main;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.apaces.demo.R;
+import com.apaces.demo.base.App;
 import com.apaces.demo.utils.ToastUtil;
 import com.apaces.demo.view.fragment.business.BusinessFragment;
 import com.apaces.demo.view.fragment.car.CarFragment;
@@ -179,5 +182,23 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
         }
+    }
+
+
+    //记录用户首次点击返回键的时间
+    private long firstTime = 0;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if (System.currentTimeMillis() - firstTime > 2000) {
+                Toast.makeText(MainActivity.this, "再按一次退出云电猫", Toast.LENGTH_SHORT).show();
+                firstTime = System.currentTimeMillis();
+            } else {
+                App.getInstance().exitApp();
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

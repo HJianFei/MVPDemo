@@ -16,6 +16,7 @@ import com.apaces.demo.presenter.login.LoginPresenterImpl;
 import com.apaces.demo.utils.LogUtils;
 import com.apaces.demo.utils.ToastUtil;
 import com.apaces.demo.view.activity.main.MainActivity;
+import com.apaces.demo.view.activity.register.RegisterActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -99,6 +100,9 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements L
                 mPresenter.login(map);
                 break;
             case R.id.btn_reg://注册
+
+                Intent intent = new Intent(this, RegisterActivity.class);
+                startActivity(intent);
 
                 break;
         }
