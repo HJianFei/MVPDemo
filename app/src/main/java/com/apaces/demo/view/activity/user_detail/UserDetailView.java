@@ -14,5 +14,9 @@ public interface UserDetailView extends BaseView {
 
     void onFinished(BaseResponse<UserDetailResult> response);
 
+    void onIsFriendFinished(ResultCode resultCode);
+
+    void onAddFriendFinished(ResultCode resultCode);
+
     void onDelFinished(ResultCode resultCode);
 }

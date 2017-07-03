@@ -44,6 +44,17 @@ public class UserDetailPresenterImpl implements UserDetailPresenter, UserDetailM
     }
 
     @Override
+    public void onIsFriendFinished(ResultCode resultCode) {
+        mView.onIsFriendFinished(resultCode);
+    }
+
+    @Override
+    public void onAddFriendFinished(ResultCode resultCode) {
+        mView.onAddFriendFinished(resultCode);
+
+    }
+
+    @Override
     public void onDelFinished(ResultCode resultCode) {
         mView.onDelFinished(resultCode);
 
@@ -63,5 +74,17 @@ public class UserDetailPresenterImpl implements UserDetailPresenter, UserDetailM
     @Override
     public void delFriend(Map<String, Object> map) {
         mModel.delFriend(map, this);
+    }
+
+    @Override
+    public void addFriend(Map<String, Object> map) {
+        mModel.addFriend(map, this);
+
+    }
+
+    @Override
+    public void isFriend(Map<String, Object> map) {
+        mModel.isFriend(map, this);
+
     }
 }

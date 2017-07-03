@@ -41,12 +41,14 @@ public class UserDetailActivity extends BaseActivity<UserDetailPresenterImpl> im
     @BindView(R.id.btn_del)
     Button btnDel;
     private String username;
+    private String enter_type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_detail);
         username = getIntent().getStringExtra("username");
+        enter_type = getIntent().getStringExtra("type");
         ButterKnife.bind(this);
         userName.setText(username);
         setToolBar(toolbar, "好友详情");
@@ -57,6 +59,8 @@ public class UserDetailActivity extends BaseActivity<UserDetailPresenterImpl> im
         Map<String, Object> map = new HashMap<>();
         map.put("username", username);
         mPresenter.getUserDetail(map);
+
+        mPresenter.isFriend(map);
     }
 
     @Override
@@ -84,6 +88,34 @@ public class UserDetailActivity extends BaseActivity<UserDetailPresenterImpl> im
     }
 
     @Override
+    public void onIsFriendFinished(ResultCode resultCode) {
+        if (resultCode.code == 200) {
+
+            if (enter_type.equals("user_friend")) {
+                btnDel.setText("发送消息");
+            } else {
+                btnDel.setText("删除好友");
+            }
+        } else {
+            btnDel.setText("添加好友");
+        }
+
+    }
+
+    @Override
+    public void onAddFriendFinished(ResultCode resultCode) {
+
+        LogUtils.d("onResponse", resultCode.toString());
+        if (resultCode.code == 200) {
+            ToastUtil.showToast(this, "添加成功");
+            this.finish();
+        } else {
+            ToastUtil.showToast(this, "添加失败，稍后再试");
+        }
+
+    }
+
+    @Override
     public void onDelFinished(ResultCode resultCode) {
         LogUtils.d("onResponse", resultCode.toString());
         if (resultCode.code == 200) {
@@ -98,9 +130,16 @@ public class UserDetailActivity extends BaseActivity<UserDetailPresenterImpl> im
     @OnClick(R.id.btn_del)
     public void onViewClicked() {
 
-        Map<String, Object> map = new HashMap<>();
-        map.put("username", username);
-        mPresenter.delFriend(map);
+        if (btnDel.getText().toString().equals("添加好友")) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("username", username);
+            mPresenter.addFriend(map);
+
+        } else if (btnDel.getText().toString().equals("删除好友")) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("username", username);
+            mPresenter.delFriend(map);
+        }
 
     }
 }

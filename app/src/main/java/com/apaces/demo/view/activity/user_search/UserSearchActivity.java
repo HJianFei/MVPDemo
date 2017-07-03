@@ -1,16 +1,20 @@
 package com.apaces.demo.view.activity.user_search;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.apaces.demo.R;
 import com.apaces.demo.adapter.common.CommonAdapter;
+import com.apaces.demo.adapter.common.OnItemClickListener;
 import com.apaces.demo.adapter.common.ViewHolder;
 import com.apaces.demo.base.BaseActivity;
 import com.apaces.demo.base.BaseResponse;
@@ -19,6 +23,7 @@ import com.apaces.demo.presenter.user_search.UserSearchPresenterImpl;
 import com.apaces.demo.utils.ImgConfig;
 import com.apaces.demo.utils.LogUtils;
 import com.apaces.demo.utils.ToastUtil;
+import com.apaces.demo.view.activity.user_detail.UserDetailActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -69,6 +74,20 @@ public class UserSearchActivity extends BaseActivity<UserSearchPresenterImpl> im
                 }
             }
         };
+        adapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(ViewGroup parent, View view, Object o, int position) {
+                Intent intent = new Intent(UserSearchActivity.this, UserDetailActivity.class);
+                intent.putExtra("username", list.get(position).username);
+                intent.putExtra("type", "user_search");//用户搜索进入
+                startActivity(intent);
+            }
+
+            @Override
+            public boolean onItemLongClick(ViewGroup parent, View view, Object o, int position) {
+                return false;
+            }
+        });
 
         reSearchResult.setLayoutManager(new LinearLayoutManager(this));
         reSearchResult.setAdapter(adapter);

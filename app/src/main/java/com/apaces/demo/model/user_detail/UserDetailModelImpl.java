@@ -1,6 +1,7 @@
 package com.apaces.demo.model.user_detail;
 
 import com.apaces.demo.base.BaseResponse;
+import com.apaces.demo.entity.Friend;
 import com.apaces.demo.entity.ResultCode;
 import com.apaces.demo.entity.UserDetailResult;
 import com.apaces.demo.utils.XMPPLoadThread;
@@ -72,5 +73,63 @@ public class UserDetailModelImpl implements UserDetailModel {
 
             }
         };
+    }
+
+    @Override
+    public void addFriend(Map<String, Object> map, final onFinishListener listener) {
+        final String username = (String) map.get("username");
+        new XMPPLoadThread() {
+
+            @Override
+            protected Object load() {
+                return XMPPConnUtils.getInstance().addUser(username);
+            }
+
+            @Override
+            protected void result(Object object) {
+                boolean flag = (boolean) object;
+                ResultCode resultCode = new ResultCode();
+                if (flag) {
+                    resultCode.code = 200;
+                    resultCode.msg = "success";
+                } else {
+                    resultCode.code = 201;
+                    resultCode.msg = "fault";
+                }
+
+                listener.onAddFriendFinished(resultCode);
+            }
+        };
+
+
+    }
+
+    @Override
+    public void isFriend(Map<String, Object> map, final onFinishListener listener) {
+
+        final String username = (String) map.get("username");
+        new XMPPLoadThread() {
+
+            @Override
+            protected Object load() {
+                return XMPPConnUtils.getInstance().getFriends().contains(new Friend(username));
+            }
+
+            @Override
+            protected void result(Object object) {
+                boolean flag = (boolean) object;
+                ResultCode resultCode = new ResultCode();
+                if (flag) {
+                    resultCode.code = 200;
+                    resultCode.msg = "success";
+                } else {
+                    resultCode.code = 201;
+                    resultCode.msg = "fault";
+                }
+
+                listener.onIsFriendFinished(resultCode);
+            }
+        };
+
     }
 }

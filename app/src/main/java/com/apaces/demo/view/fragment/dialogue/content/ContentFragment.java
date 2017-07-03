@@ -96,6 +96,7 @@ public class ContentFragment extends BaseFragment<ContentPresenterImpl> implemen
                     public void onClick(View v) {
                         Intent intent = new Intent(mActivity, UserDetailActivity.class);
                         intent.putExtra("username", friend.username);
+                        intent.putExtra("type", "user_friend");//用户好友进入
                         startActivity(intent);
 
                     }

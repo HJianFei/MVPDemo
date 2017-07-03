@@ -15,4 +15,8 @@ public interface UserDetailPresenter extends BasePresenter<UserDetailView> {
     void getUserDetail(Map<String, Object> map);
 
     void delFriend(Map<String, Object> map);
+
+    void addFriend(Map<String, Object> map);
+
+    void isFriend(Map<String, Object> map);
 }

@@ -17,6 +17,10 @@ public interface UserDetailModel {
 
         void onFinished(BaseResponse<UserDetailResult> response);
 
+        void onIsFriendFinished(ResultCode resultCode);
+
+        void onAddFriendFinished(ResultCode resultCode);
+
         void onDelFinished(ResultCode resultCode);
 
         void onError();
@@ -27,4 +31,10 @@ public interface UserDetailModel {
 
     //删除好友
     void delFriend(Map<String, Object> map, onFinishListener listener);
+
+    //添加好友
+    void addFriend(Map<String, Object> map, onFinishListener listener);
+
+    //判断是否为好友关系
+    void isFriend(Map<String, Object> map, onFinishListener listener);
 }
