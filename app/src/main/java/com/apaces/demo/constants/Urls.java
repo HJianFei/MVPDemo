@@ -9,7 +9,7 @@ package com.apaces.demo.constants;
 public class Urls {
 
     //服务器地址
-    public static final String SERVER_HOST = "192.168.1.66";
+    public static final String SERVER_HOST = "192.168.1.59";
 
 
     public static final String API_SERVER = "";
@@ -34,4 +34,7 @@ public class Urls {
 
     //删除好友
     public static final String DEL_FRIEND = "";
+
+    //搜索用户
+    public static final String USER_SEARCH = "";
 }

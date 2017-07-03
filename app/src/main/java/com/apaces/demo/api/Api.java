@@ -7,6 +7,7 @@ import com.apaces.demo.entity.LoginResult;
 import com.apaces.demo.entity.ResultCode;
 import com.apaces.demo.entity.User;
 
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
@@ -39,4 +40,8 @@ public interface Api {
     //删除好友
     @POST(Urls.DEL_FRIEND)
     Observable<ResultCode> delFriend(@FieldMap Map<String, Object> map);
+
+    //搜索用户
+    @POST(Urls.USER_SEARCH)
+    Observable<BaseResponse<List<User>>> userSearch(@FieldMap Map<String, Object> map);
 }
