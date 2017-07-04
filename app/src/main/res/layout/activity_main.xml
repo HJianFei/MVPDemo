@@ -73,6 +73,7 @@
                 android:textColor="@color/black_1" />
 
             <TextView
+                android:id="@+id/new_msg"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_gravity="end"
@@ -80,7 +81,8 @@
                 android:gravity="center"
                 android:text="5"
                 android:textColor="@color/white"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:visibility="gone" />
 
         </FrameLayout>
 
